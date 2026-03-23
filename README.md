@@ -250,11 +250,12 @@ This project is executed in **4 phases**, each containing a set of clear deploym
     <img width="1168" height="506" alt="image" src="https://github.com/user-attachments/assets/ab554649-95ab-4b64-bd77-e61c28f45796" />
 
 5. Under **Credentials**, click on **Add** and select **Global**
-6. Select **GitHub App**, click on **Next**
+6. Select **Username with password**, click on **Next**
 
-    <img width="441" height="514" alt="image" src="https://github.com/user-attachments/assets/8aa5a1e6-fbf2-4d67-8630-8ac6c52279c9" />
+    <img width="441" height="514" alt="image" src="https://github.com/user-attachments/assets/73fedc3b-b384-42e4-bb7b-21667d7021c3" />
+    <img width="441" height="514" alt="image" src="https://github.com/user-attachments/assets/b1dc3e62-858d-45a0-9d1b-9c007e1f0746" />
 
-7. ds
+7. Select the newly created credentials from the dropdown
 8. v
 9. ds
 10. v
