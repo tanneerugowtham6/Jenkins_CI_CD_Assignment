@@ -244,20 +244,46 @@ This project is executed in **4 phases**, each containing a set of clear deploym
 
     <img width="824" height="687" alt="image" src="https://github.com/user-attachments/assets/30c9f9f5-b91a-4ec6-a14b-ecd7cffd324f" />
 
-3. Enter Description and scroll down to the **Pipeline** section and select Definition as **Pipeline script from SCM**
-4. Select SCM as **Git** and enter the **Repository URL**
+3. Enter Description and scroll down to **Triggers** section and select `GitHub hook trigger for GITScm polling` option
+
+    <img width="1710" height="783" alt="image" src="https://github.com/user-attachments/assets/e2971d18-6e80-4def-a4a4-2b64c0fe7af4" />
+
+4. Scroll down to the **Pipeline** section and select Definition as **Pipeline script from SCM**
+5. Select SCM as **Git** and enter the **Repository URL**
 
     <img width="1168" height="506" alt="image" src="https://github.com/user-attachments/assets/ab554649-95ab-4b64-bd77-e61c28f45796" />
 
-5. Under **Credentials**, click on **Add** and select **Global**
-6. Select **Username with password**, click on **Next**
+6. Under **Credentials**, click on **Add** and select **Global**
+7. Select **Username with password**, click on **Next**
 
     <img width="441" height="514" alt="image" src="https://github.com/user-attachments/assets/73fedc3b-b384-42e4-bb7b-21667d7021c3" />
     <img width="441" height="514" alt="image" src="https://github.com/user-attachments/assets/b1dc3e62-858d-45a0-9d1b-9c007e1f0746" />
 
-7. Select the newly created credentials from the dropdown
-8. v
-9. ds
-10. v
-11. dsf
-12. 
+8. Select the newly created credentials from the dropdown
+9. Under **Branches to build** section for **Branch Specifier** mention `*/main` and **Script path** as `Python_Web_App/Jenkinsfile`
+
+    <img width="1511" height="1070" alt="image" src="https://github.com/user-attachments/assets/d5c890de-333c-42c5-8de6-26ac577e2a13" />
+
+10. Click on **Save**
+
+    <img width="1710" height="458" alt="image" src="https://github.com/user-attachments/assets/9a068828-4d40-47af-84d9-4ea3a109bf73" />
+
+### Task 2: Create Jenkinsfile
+
+1. Create the `Jenkinsfile` under the **Python_Web_App** folder
+2. Refer to the Jenkinsfile from this repository
+3. Once `Jenkinsfile` has been created, commit the changes to the repository and push the changes to GitHUb
+
+    ```sh
+    git add .
+    git commit -m "Added Jenkinsfile"
+    git push origin
+    ```
+    
+4. Once the Jenkinsfile has been pushed, it should trigger the pipeline
+5. 
+6. df
+7. b
+8. vdf
+9. b
+10. d
