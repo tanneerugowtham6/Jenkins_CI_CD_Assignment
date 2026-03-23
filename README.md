@@ -232,7 +232,7 @@ This project is executed in **4 phases**, each containing a set of clear deploym
 
 ---
 
-## Phase 2: Create Jenkins pipeline
+## Phase 2: Create Jenkins pipeline and Webhook
 
 ### Task-1: Create a Job in Jenkins
 
@@ -268,7 +268,22 @@ This project is executed in **4 phases**, each containing a set of clear deploym
 
     <img width="1710" height="458" alt="image" src="https://github.com/user-attachments/assets/9a068828-4d40-47af-84d9-4ea3a109bf73" />
 
-### Task 2: Create Jenkinsfile
+### Task 2: Create Webhook in GitHub
+
+1. Goto the Github Repository and click on Settings
+
+    <img width="1149" height="484" alt="image" src="https://github.com/user-attachments/assets/c26ad540-d4d6-43bc-80a9-ae993081acca" />
+
+2. Select **Webhooks** and click on **Add webhook**
+3. Fill in all teh required details as mentioned below
+
+    <img width="1464" height="849" alt="image" src="https://github.com/user-attachments/assets/0f216895-317f-4a0f-9c6e-eaba41ad5daf" />
+
+---
+
+## Phase 3: Creation of Jenkinsfile
+
+### Task 1: Create Jenkinsfile
 
 1. Create the `Jenkinsfile` under the **Python_Web_App** folder
 2. Refer to the Jenkinsfile from this repository
@@ -281,9 +296,3 @@ This project is executed in **4 phases**, each containing a set of clear deploym
     ```
     
 4. Once the Jenkinsfile has been pushed, it should trigger the pipeline
-5. 
-6. df
-7. b
-8. vdf
-9. b
-10. d
