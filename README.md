@@ -222,12 +222,41 @@ This project is executed in **4 phases**, each containing a set of clear deploym
 
     <img width="1709" height="1071" alt="image" src="https://github.com/user-attachments/assets/efbeae92-c9a5-478d-9abe-1a08fc6fbc05" />
 
-10. Click on Available plugins, search for the **ShiningPanda** plugin, and click on **Install** and select **Restart Jenkins when installation is complete and no jobs are running**
+10. Click on Available plugins, search for the **ShiningPanda & Email Extension Plugin** plugin, and click on **Install** and select **Restart Jenkins when installation is complete and no jobs are running**
 
     <img width="1709" height="455" alt="image" src="https://github.com/user-attachments/assets/d30e8a3d-891b-47ad-9842-594afd576460" />
     <img width="447" height="87" alt="image" src="https://github.com/user-attachments/assets/2e8e3f33-2eeb-47eb-bfc7-45a9a20072a7" />
+    <img width="1710" height="379" alt="image" src="https://github.com/user-attachments/assets/bb9127ec-26f0-4b98-8c33-31af087abdf2" />
 
 11. Once restarted, log back in to the Jenkins page
 
 ---
 
+## Phase 2: Create Jenkins pipeline
+
+### Task-1: Create a Job in Jenkins
+
+1. Open Jenkins Homepage, click on **New item**
+
+    <img width="1710" height="558" alt="image" src="https://github.com/user-attachments/assets/f9b3fbcc-b310-4af1-b5a1-91e407dd4823" />
+
+2. Enter an item name as `python_ci_cd_pipeline`, select the item type as `Pipeline`, and click on `OK`
+
+    <img width="824" height="687" alt="image" src="https://github.com/user-attachments/assets/30c9f9f5-b91a-4ec6-a14b-ecd7cffd324f" />
+
+3. Enter Description and scroll down to the **Pipeline** section and select Definition as **Pipeline script from SCM**
+4. Select SCM as **Git** and enter the **Repository URL**
+
+    <img width="1168" height="506" alt="image" src="https://github.com/user-attachments/assets/ab554649-95ab-4b64-bd77-e61c28f45796" />
+
+5. Under **Credentials**, click on **Add** and select **Global**
+6. Select **GitHub App**, click on **Next**
+
+    <img width="441" height="514" alt="image" src="https://github.com/user-attachments/assets/8aa5a1e6-fbf2-4d67-8630-8ac6c52279c9" />
+
+7. ds
+8. v
+9. ds
+10. v
+11. dsf
+12. 
