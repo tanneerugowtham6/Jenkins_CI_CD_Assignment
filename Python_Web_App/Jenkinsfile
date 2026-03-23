@@ -41,25 +41,14 @@ pipeline {
                 '''
             }
         }
-        // stage('Deploy') {
-        //     steps {
-        //         echo 'Deploying the application...'
-        //         sh '''
-        //         . venv/bin/activate
-        //         cd Python_Web_App/
-        //         nohup python3 app.py > app.log 2>&1 &
-        //         '''
-        //     }
-        // }
         stage('Deploy') {
             steps {
-                dir('Python_Web_App') {
-                    sh '''
-                        . venv/bin/activate
-                        echo "Starting app in background..."
-                        nohup python3 app.py > app.log 2>&1 &
-                    '''
-                }
+                echo 'Deploying the application...'
+                sh '''
+                . venv/bin/activate
+                cd Python_Web_App/
+                nohup python3 app.py > app.log 2>&1 &
+                '''
             }
         }
     }
