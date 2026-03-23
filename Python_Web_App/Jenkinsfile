@@ -2,6 +2,24 @@ pipeline {
     agent any
 
     stages {
+        stage('Env Setup') {
+            steps {
+                dir('Python_Web_App') {
+                    withCredentials([
+                        string(credentialsId: 'mongo-uri', variable: 'MONGO_URI'),
+                        string(credentialsId: 'secret-key', variable: 'SECRET_KEY')
+                    ]) {
+                        sh ```
+                        echo "Injecting environment variables into .env..."
+                        cat <<EOF > .env
+                        MONGO_URI=$MONGO_URI/gowtham-reg
+                        SECRET_KEY=$SECRET_KEY
+                        EOF
+                        ```
+                    }
+                }
+            }
+        }
         stage('Build') {
             steps {
                 echo 'Installing the dependencies...'
