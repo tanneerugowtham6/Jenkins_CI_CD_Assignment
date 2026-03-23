@@ -12,7 +12,7 @@ pipeline {
                         sh '''
                         echo "Injecting environment variables into .env..."
                         cat <<EOF > .env
-                        MONGO_URI=$MONGO_URI/gowtham-reg
+                        MONGO_URI=$MONGO_URI
                         SECRET_KEY=$SECRET_KEY
                         EOF
                         '''
