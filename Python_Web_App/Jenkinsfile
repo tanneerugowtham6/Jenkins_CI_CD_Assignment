@@ -58,6 +58,7 @@ pipeline {
 
                     echo 'Running the application...'
                     sh '''
+                    ls -la $REMOTE_APP_DIR
                     cd $REMOTE_APP_DIR/Python_Web_App
                     sudo apt update && sudo apt install -y python3-venv python3-pip
                     python3 -m venv venv
