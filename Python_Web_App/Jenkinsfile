@@ -53,12 +53,12 @@ pipeline {
                     echo 'Copying the files to the staging server...'
                     sh '''
                     ssh -o StrictHostKeyChecking=no $STAGING_USER@$STAGING_SERVER_IP "mkdir -p $REMOTE_APP_DIR"
-                    scp -o StrictHostKeyChecking=no -r Python_Web_App/. $STAGING_USER@$STAGING_SERVER_IP:$REMOTE_APP_DIR/
+                    scp -o StrictHostKeyChecking=no -r Python_Web_App/* $STAGING_USER@$STAGING_SERVER_IP:$REMOTE_APP_DIR/
                     '''
 
                     echo 'Running the application...'
                     sh '''
-                    cd $REMOTE_APP_DIR
+                    cd $REMOTE_APP_DIR/Python_Web_App
                     sudo apt update && sudo apt install -y python3-venv python3-pip
                     python3 -m venv venv
                     . venv/bin/activate
