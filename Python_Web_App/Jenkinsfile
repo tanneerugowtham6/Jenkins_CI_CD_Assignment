@@ -43,7 +43,7 @@ pipeline {
                 sh '''
                 . venv/bin/activate
                 cd Python_Web_App/
-                pytest || true
+                pytest
                 '''
             }
         }
