@@ -1,6 +1,12 @@
 pipeline {
     agent any
 
+    environment {
+        STAGING_SERVER_IP = '18.207.188.70'
+        STAGING_USER = 'ubuntu'
+        REMOTE_APP_DIR = '/home/ubuntu/App'
+    }
+
     stages {
         stage('Env Setup') {
             steps {
@@ -43,12 +49,23 @@ pipeline {
         }
         stage('Deploy') {
             steps {
-                echo 'Deploying the application...'
-                sh '''
-                . venv/bin/activate
-                cd Python_Web_App/
-                nohup python3 app.py > app.log 2>&1 &
-                '''
+                sshagent (['staging-pem-key']) {
+                    echo 'Copying the files to the staging server...'
+                    sh '''
+                    ssh -o StrictHostKeyChecking=no $STAGING_USER@$STAGING_SERVER_IP "mkdir -p $REMOTE_APP_DIR"
+                    scp -o StrictHostKeyChecking=no -r Python_Web_App/. $STAGING_USER@$STAGING_SERVER_IP:$REMOTE_APP_DIR/
+                    '''
+
+                    echo 'Running the application...'
+                    sh '''
+                    cd $REMOTE_APP_DIR
+                    sudo apt update && sudo apt install -y python3-venv python3-pip
+                    python3 -m venv venv
+                    . venv/bin/activate
+                    pip install -r requirements.txt
+                    BUILD_ID=dontKillMe nohup python3 app.py > output.log 2>&1 &
+                    '''
+                }
             }
         }
     }
