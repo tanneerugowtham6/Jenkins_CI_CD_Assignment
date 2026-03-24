@@ -277,29 +277,49 @@ This project is executed in **4 phases**, each containing a set of clear deploym
 
     <img width="824" height="687" alt="image" src="https://github.com/user-attachments/assets/30c9f9f5-b91a-4ec6-a14b-ecd7cffd324f" />
 
-3. Enter Description and scroll down to **Triggers** section and select `GitHub hook trigger for GITScm polling` option
-
-    <img width="1710" height="783" alt="image" src="https://github.com/user-attachments/assets/e2971d18-6e80-4def-a4a4-2b64c0fe7af4" />
-
-4. Scroll down to the **Pipeline** section and select Definition as **Pipeline script from SCM**
-5. Select SCM as **Git** and enter the **Repository URL**
+3. Enter Description and Scroll down to the **Pipeline** section and select Definition as **Pipeline script from SCM**
+4. Select SCM as **Git** and enter the **Repository URL**
 
     <img width="1168" height="506" alt="image" src="https://github.com/user-attachments/assets/ab554649-95ab-4b64-bd77-e61c28f45796" />
 
-6. Under **Credentials**, click on **Add** and select **Global**
-7. Select **Username with password**, click on **Next**
+5. Under **Credentials**, click on **Add** and select **Global**
+6. Select **Username with password**, click on **Next**
 
     <img width="441" height="514" alt="image" src="https://github.com/user-attachments/assets/73fedc3b-b384-42e4-bb7b-21667d7021c3" />
     <img width="441" height="514" alt="image" src="https://github.com/user-attachments/assets/b1dc3e62-858d-45a0-9d1b-9c007e1f0746" />
 
-8. Select the newly created credentials from the dropdown
-9. Under **Branches to build** section for **Branch Specifier** mention `*/main` and **Script path** as `Python_Web_App/Jenkinsfile`
+7. Select the newly created credentials from the dropdown
+8. Under **Branches to build** section for **Branch Specifier** mention `*/main` and **Script path** as `Python_Web_App/Jenkinsfile`
 
     <img width="1511" height="1070" alt="image" src="https://github.com/user-attachments/assets/d5c890de-333c-42c5-8de6-26ac577e2a13" />
 
-10. Click on **Save**
+9. Click on **Save**
 
     <img width="1710" height="458" alt="image" src="https://github.com/user-attachments/assets/9a068828-4d40-47af-84d9-4ea3a109bf73" />
+
+10. Once created the pipeline job, click on the settings icon on top right corner, which navigates to Manage Jenkins page
+
+    <img width="1908" height="1024" alt="image" src="https://github.com/user-attachments/assets/21bc0c47-39bb-4adf-9d99-b5122656e50a" />
+
+11. Click on Credentials
+12. Click on **+ Add Credentials**
+
+    <img width="1903" height="500" alt="image" src="https://github.com/user-attachments/assets/6b77e857-30bb-4128-a323-c0312c740cc5" />
+
+13. Select **SSH Username with private key**, click on **Next**
+
+    <img width="569" height="659" alt="image" src="https://github.com/user-attachments/assets/d2504204-058f-45a5-a921-d94956a09d78" />
+
+14. Fill in the details as mentioned in the below screenshot
+
+    <img width="560" height="950" alt="image" src="https://github.com/user-attachments/assets/1a3e4a6c-16d7-4af2-99d6-2ecc27b12251" />
+
+> [!NOTE]
+> Make sure the id matches in both Jenkinsfile and Jenkins Credentials(In Jenkins Server)
+
+15. Click on **Create**
+16. Navigate the pipeline job or item which we created earlier and click on **Build Now** button
+    
 
 ### Task 2: Create Webhook in GitHub
 
@@ -311,6 +331,10 @@ This project is executed in **4 phases**, each containing a set of clear deploym
 3. Fill in all teh required details as mentioned below
 
     <img width="1464" height="849" alt="image" src="https://github.com/user-attachments/assets/0f216895-317f-4a0f-9c6e-eaba41ad5daf" />
+
+ scroll down to **Triggers** section and select `GitHub hook trigger for GITScm polling` option
+
+    <img width="1710" height="783" alt="image" src="https://github.com/user-attachments/assets/e2971d18-6e80-4def-a4a4-2b64c0fe7af4" />
 
 ---
 
