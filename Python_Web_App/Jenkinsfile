@@ -62,9 +62,8 @@ pipeline {
                     cd $REMOTE_APP_DIR/ &&  ls -la && \
                     sudo apt update && sudo apt install -y python3-venv python3-pip && \
                     python3 -m venv venv && \
-                    . venv/bin/activate && \
-                    pip install -r requirements.txt && \
-                    ( ( nohup ./venv/bin/python3 app.py > output.log 2>&1 & ) && sleep 3 && disown )
+                    . venv/bin/pip install -r requirements.txt && \
+                    BUILD_ID=dontKillMe nohup ./venv/bin/python3 app.py > output.log 2>&1 & sleep 5
                     "
                     '''
                 }
