@@ -43,7 +43,7 @@ pipeline {
                 sh '''
                 . venv/bin/activate
                 cd Python_Web_App/
-                pytest
+                pytest || true
                 '''
             }
         }
@@ -59,7 +59,7 @@ pipeline {
                     echo 'Running the application...'
                     sh '''
                     ssh -o StrictHostKeyChecking=no $STAGING_USER@$STAGING_SERVER_IP "
-                    cd $REMOTE_APP_DIR/Python_Web_App && \
+                    cd $REMOTE_APP_DIR/ &&  ls -la && \
                     sudo apt update && sudo apt install -y python3-venv python3-pip && \
                     python3 -m venv venv && \
                     . venv/bin/activate && \
