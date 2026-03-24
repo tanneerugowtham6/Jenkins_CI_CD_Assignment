@@ -12,10 +12,10 @@ This project is executed in **4 phases**, each containing a set of clear deploym
 
 ### Phases of Deployment
 
-- **Phase 1:** Instance Setup & Environment Preparation
-- **Phase 2:** Application Deployment (Backend + Frontend)
-- **Phase 3:** Domain Integration and SSL Configuration
-- **Phase 4:** Scaling & Load Balancing
+- **Phase 1:** Environment & Source Control Setup
+- **Phase 2:** Writing the Jenkinsfile
+- **Phase 3:** Jenkins Job Configuration
+- **Phase 4:** Verification
 
 ---
 
@@ -46,9 +46,9 @@ This project is executed in **4 phases**, each containing a set of clear deploym
 
 ---
 
-## Phase 1: Instance Setup & Environment Preparation 
+## Phase 1: Environment & Source Control Setup 
 
-### Task-1: Launching EC2 Instance
+### Task-1: Launching EC2 Instances for Jenkins and Staging Server
 
 #### Steps:
 
@@ -84,11 +84,13 @@ This project is executed in **4 phases**, each containing a set of clear deploym
 
     <img width="622" height="182" alt="image" src="https://github.com/user-attachments/assets/e40b6b0b-554c-4d5d-ba0f-196cf4d032c5" />
 
+9. Repeat the same process to create an EC2 instance for Staging Environment
+
 ### Task-2: Installing Jenkins and other required Software
 
 #### Steps:
 
-1. Go to the EC2 Instance and copy the Public IPv4 or Public DNS
+1. Go to the Jenkins EC2 Instance and copy the Public IPv4 or Public DNS
 2. Launch the Terminal (macOS), Command Prompt (Windows)
 3. Navigate to the folder where your `.pem` file is downloaded and assign the executable permissions to the file
 
@@ -177,7 +179,22 @@ This project is executed in **4 phases**, each containing a set of clear deploym
 
     <img width="450" height="76" alt="image" src="https://github.com/user-attachments/assets/cb857d17-26a0-4b6f-ad1d-0687b1a207f4" />
 
-### Task-2: Conigure Jenkins
+### Task-2: Fork the GitHub Repository
+
+#### Steps:
+
+1. Goto the GitHub repository where the application code is available.
+2. Click on Fork
+
+    <img width="1919" height="1006" alt="image" src="https://github.com/user-attachments/assets/eba05ba8-d871-4e72-86b2-a277f31ee7da" />
+
+3. Fill in the details of destination repository by logging into your GitHub account
+
+    <img width="752" height="577" alt="image" src="https://github.com/user-attachments/assets/83c6d9b1-0113-4d5a-bb0e-e211bff965bb" />
+
+4. Then click on Fork
+
+### Task-3: Conigure Jenkins
 
 #### Steps:
 
@@ -232,7 +249,23 @@ This project is executed in **4 phases**, each containing a set of clear deploym
 
 ---
 
-## Phase 2: Create Jenkins pipeline and Webhook
+## Phase 2: Writing the Jenkinsfile
+
+### Task 1: Create Jenkinsfile
+
+1. Create the `Jenkinsfile` under the **Python_Web_App** folder
+2. Refer to the Jenkinsfile from this repository
+3. Once `Jenkinsfile` has been created, commit the changes to the repository and push the changes to GitHUb
+
+    ```sh
+    git add .
+    git commit -m "Added Jenkinsfile"
+    git push origin
+    ```
+
+---
+
+## Phase 3: Jenkins Job Configuration
 
 ### Task-1: Create a Job in Jenkins
 
@@ -281,18 +314,4 @@ This project is executed in **4 phases**, each containing a set of clear deploym
 
 ---
 
-## Phase 3: Creation of Jenkinsfile
 
-### Task 1: Create Jenkinsfile
-
-1. Create the `Jenkinsfile` under the **Python_Web_App** folder
-2. Refer to the Jenkinsfile from this repository
-3. Once `Jenkinsfile` has been created, commit the changes to the repository and push the changes to GitHUb
-
-    ```sh
-    git add .
-    git commit -m "Added Jenkinsfile"
-    git push origin
-    ```
-    
-4. Once the Jenkinsfile has been pushed, it should trigger the pipeline
