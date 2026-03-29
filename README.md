@@ -133,14 +133,13 @@ This project is executed in **4 phases**, each containing a set of clear deploym
 7. Install Jenkins by following the instructions mentioned `https://www.jenkins.io/doc/book/installing/linux/#debianubuntu`
 
     ```sh
-    curl -fsSL https://pkg.jenkins.io/debian/jenkins.io.key | sudo tee \
-    /usr/share/keyrings/jenkins-keyring.asc > /dev/null
-    echo deb [signed-by=/usr/share/keyrings/jenkins-keyring.asc] \
-    https://pkg.jenkins.io/debian binary/ | sudo tee \
-    /etc/apt/sources.list.d/jenkins.list > /dev/null
-
+    sudo wget -O /etc/apt/keyrings/jenkins-keyring.asc \
+      https://pkg.jenkins.io/debian-stable/jenkins.io-2026.key
+    echo "deb [signed-by=/etc/apt/keyrings/jenkins-keyring.asc]" \
+      https://pkg.jenkins.io/debian-stable binary/ | sudo tee \
+      /etc/apt/sources.list.d/jenkins.list > /dev/null
     sudo apt update
-    sudo apt install jenkins -y
+    sudo apt install jenkins
     ```
 
     <img width="1507" height="254" alt="image" src="https://github.com/user-attachments/assets/cdc8ac5c-7e48-45bb-b3f9-897ca101d9c3" />
