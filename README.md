@@ -86,7 +86,7 @@ This project is executed in **4 phases**, each containing a set of clear deploym
 
 9. Repeat the same process to create an EC2 instance for Staging Environment
 
-### Task-2: Installing Jenkins and other required Software
+### Task-2: Installing Jenkins and other required Software Jenkins and Staging servers
 
 #### Steps:
 
@@ -177,6 +177,14 @@ This project is executed in **4 phases**, each containing a set of clear deploym
     ```
 
     <img width="450" height="76" alt="image" src="https://github.com/user-attachments/assets/cb857d17-26a0-4b6f-ad1d-0687b1a207f4" />
+
+12. Go to the Jenkins EC2 Instance and copy the Public IPv4 or Public DNS
+13. Connect to the Staging EC2 Instance, Update the available packages and install Python libraries
+
+    ```sh
+    sudo apt update
+    sudo apt install -y python3-venv python3-pip
+    ```
 
 ### Task-2: Fork the GitHub Repository
 
