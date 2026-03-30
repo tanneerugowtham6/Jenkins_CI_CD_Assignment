@@ -16,7 +16,6 @@ This project is executed in **4 phases**, each containing a set of clear deploym
 - **Phase 2:** Writing the Jenkinsfile
 - **Phase 3:** Configure the service for Flask Application
 - **Phase 4:** Jenkins Job Configuration
-- **Phase 5:** Verification
 
 ---
 
@@ -30,11 +29,6 @@ This project is executed in **4 phases**, each containing a set of clear deploym
 
 ### AWS Services Used
 - EC2
-- AMI
-- Launch Template
-- Auto Scaling Group (ASG)
-- Amazon Certificate Manager (ACM)
-- Application Load Balancer (ALB)
 - Security Groups
 - VPC
 
@@ -42,8 +36,9 @@ This project is executed in **4 phases**, each containing a set of clear deploym
 - MongoDB Atlas
 
 ## Technology Stack
-
 - Python
+- Jenkins
+- Git
 
 ---
 
@@ -412,6 +407,8 @@ This project is executed in **4 phases**, each containing a set of clear deploym
 
 4. Click on Save
 5. Verify if trigger is working on new commits
+
+    <img width="1710" height="597" alt="image" src="https://github.com/user-attachments/assets/d04b7bd2-784d-4bd1-9d24-804e3144fa4e" />
 
 ---
 
