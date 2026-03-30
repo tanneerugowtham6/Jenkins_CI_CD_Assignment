@@ -54,20 +54,24 @@ pipeline {
                         string(credentialsId: 'mongo-uri', variable: 'MONGO_URI'),
                         string(credentialsId: 'secret-key', variable: 'SECRET_KEY')
                     ]) {
-                        sh """
+                        sh '''
                         ssh -o StrictHostKeyChecking=no $STAGING_USER@$STAGING_SERVER_IP "
-                        cd $REMOTE_APP_DIR && ls -la && \
+                        cd $REMOTE_APP_DIR && \
 
-                        echo \\"MONGO_URI=${MONGO_URI}\\" > .env && \
-                        echo \\"SECRET_KEY=${SECRET_KEY}\\" >> .env && \
+                        echo \"MONGO_URI=$MONGO_URI\" > .env && \
+                        echo \"SECRET_KEY=$SECRET_KEY\" >> .env && \
 
-                        python3 -m venv venv && \
+                        # Pull latest code (ADD THIS if missing)
+                        git pull origin main && \
+
+                        # Use existing venv (DO NOT recreate)
                         . venv/bin/activate && \
                         pip install -r requirements.txt && \
 
+                        # Restart service
                         sudo systemctl restart myapp
                         "
-                        """
+                        '''
                     }
                 }
             }
