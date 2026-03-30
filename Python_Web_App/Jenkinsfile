@@ -66,7 +66,10 @@ pipeline {
                     sh '''
                     ssh -o StrictHostKeyChecking=no $STAGING_USER@$STAGING_SERVER_IP "
                     cd $REMOTE_APP_DIR/ &&  ls -la && \
-                    // sudo apt update && sudo apt install -y python3-venv python3-pip && \
+                    cat <<EOF > .env
+                    MONGO_URI=$MONGO_URI
+                    SECRET_KEY=$SECRET_KEY
+                    EOF
                     pkill -f app.py || true && \
                     python3 -m venv venv && \
                     . venv/bin/activate && \
