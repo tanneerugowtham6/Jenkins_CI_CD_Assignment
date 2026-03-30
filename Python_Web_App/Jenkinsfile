@@ -49,7 +49,7 @@ pipeline {
         }
         stage('Deploy') {
             steps {
-                sshagent (['staging-pem-key']) {
+                sshagent (['staging_pem_key']) {
                     withCredentials([
                         string(credentialsId: 'mongo-uri', variable: 'MONGO_URI'),
                         string(credentialsId: 'secret-key', variable: 'SECRET_KEY')
