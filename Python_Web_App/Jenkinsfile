@@ -2,7 +2,7 @@ pipeline {
     agent any
 
     environment {
-        STAGING_SERVER_IP = '3.93.144.52'
+        STAGING_SERVER_IP = '44.202.251.153'
         STAGING_USER = 'ubuntu'
         REMOTE_APP_DIR = '/home/ubuntu/App'
     }
