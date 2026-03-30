@@ -377,6 +377,10 @@ This project is executed in **4 phases**, each containing a set of clear deploym
 16. Navigate the pipeline job or item which we created earlier and click on **Build Now** button
 
     <img width="1710" height="901" alt="image" src="https://github.com/user-attachments/assets/c5aad568-8fca-4620-8677-87c72ac7c768" />
+
+17. Verify if the application is running by visiting `http://<server-ip>:5000`
+
+    <img width="1710" height="901" alt="image" src="https://github.com/user-attachments/assets/f17f283c-cd2e-4738-a2f9-dca2f6453c2a" />
     
 
 ### Task 2: Create Webhook in GitHub
@@ -386,13 +390,28 @@ This project is executed in **4 phases**, each containing a set of clear deploym
     <img width="1149" height="484" alt="image" src="https://github.com/user-attachments/assets/c26ad540-d4d6-43bc-80a9-ae993081acca" />
 
 2. Select **Webhooks** and click on **Add webhook**
-3. Fill in all teh required details as mentioned below
+3. Fill in all the required details as mentioned below
 
     <img width="1464" height="849" alt="image" src="https://github.com/user-attachments/assets/0f216895-317f-4a0f-9c6e-eaba41ad5daf" />
 
- scroll down to **Triggers** section and select `GitHub hook trigger for GITScm polling` option
+4. Click on **Add webhook**, check if webhook is added
+
+    <img width="1710" height="367" alt="image" src="https://github.com/user-attachments/assets/8fd74160-09c2-4d4d-a0d1-308749188ebf" />
+
+
+### Task 3: Configure trigger in pipeline
+
+1. Goto the Jenkins website, navigate to the pipeline
+2. Click on **Configure** on the left side menu
+
+    <img width="1710" height="559" alt="image" src="https://github.com/user-attachments/assets/e9ea4e75-2f12-4c26-a6ef-8d591509e60b" />
+
+3. Scroll down to **Triggers** section and select `GitHub hook trigger for GITScm polling` option
 
     <img width="1710" height="783" alt="image" src="https://github.com/user-attachments/assets/e2971d18-6e80-4def-a4a4-2b64c0fe7af4" />
+
+4. Click on Save
+5. Verify if trigger is working on new commits
 
 ---
 
