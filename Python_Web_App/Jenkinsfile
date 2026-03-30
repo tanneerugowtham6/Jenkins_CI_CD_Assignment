@@ -61,16 +61,11 @@ pipeline {
                         echo \\"MONGO_URI=${MONGO_URI}\\" > .env && \
                         echo \\"SECRET_KEY=${SECRET_KEY}\\" >> .env && \
 
-                        pkill -f app.py || true && \
-                        rm -rf venv && \
-
-                        python3 -m venv venv --upgrade-deps && \
+                        python3 -m venv venv && \
                         . venv/bin/activate && \
-                        python -m ensurepip --upgrade && \
-                        pip install --upgrade pip && \
                         pip install -r requirements.txt && \
 
-                        nohup python3 app.py > output.log 2>&1 &
+                        sudo systemctl restart myapp
                         "
                         """
                     }
