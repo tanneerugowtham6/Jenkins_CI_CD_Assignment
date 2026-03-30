@@ -61,9 +61,6 @@ pipeline {
                         echo \"MONGO_URI=$MONGO_URI\" > .env && \
                         echo \"SECRET_KEY=$SECRET_KEY\" >> .env && \
 
-                        # Pull latest code (ADD THIS if missing)
-                        git pull origin main && \
-
                         # Use existing venv (DO NOT recreate)
                         . venv/bin/activate && \
                         pip install -r requirements.txt && \
