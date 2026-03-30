@@ -2,7 +2,7 @@ pipeline {
     agent any
 
     environment {
-        STAGING_SERVER_IP = '18.207.188.70'
+        STAGING_SERVER_IP = '3.93.144.52'
         STAGING_USER = 'ubuntu'
         REMOTE_APP_DIR = '/home/ubuntu/App'
     }
@@ -30,9 +30,9 @@ pipeline {
             steps {
                 echo 'Installing the dependencies...'
                 sh '''
+                cd Python_Web_App/
                 python3 -m venv venv
                 . venv/bin/activate
-                cd Python_Web_App/
                 pip install -r requirements.txt
                 '''
             }
@@ -41,29 +41,42 @@ pipeline {
             steps {
                 echo 'Testing the application...'
                 sh '''
-                . venv/bin/activate
                 cd Python_Web_App/
-                pytest || true
+                . venv/bin/activate
+                pytest
                 '''
             }
         }
         stage('Deploy') {
             steps {
+                when{
+                    expression {
+                        currentBuild.currentResult == 'SUCCESS'
+                    }
+                }
                 sshagent (['staging-pem-key']) {
+                    echo 'Cleaning remote directory...'
+                    sh '''
+                    ssh -o StrictHostKeyChecking=no $STAGING_USER@$STAGING_SERVER_IP "
+                    rm -rf $REMOTE_APP_DIR/*"
+                    '''
+
                     echo 'Copying the files to the staging server...'
                     sh '''
                     ssh -o StrictHostKeyChecking=no $STAGING_USER@$STAGING_SERVER_IP "mkdir -p $REMOTE_APP_DIR"
                     scp -o StrictHostKeyChecking=no -r Python_Web_App/* $STAGING_USER@$STAGING_SERVER_IP:$REMOTE_APP_DIR/
                     '''
 
-                    echo 'Running the application...'
+                    echo 'Deploying the application...'
                     sh '''
                     ssh -o StrictHostKeyChecking=no $STAGING_USER@$STAGING_SERVER_IP "
                     cd $REMOTE_APP_DIR/ &&  ls -la && \
-                    sudo apt update && sudo apt install -y python3-venv python3-pip && \
+                    // sudo apt update && sudo apt install -y python3-venv python3-pip && \
+                    pkill -f app.py || true && \
                     python3 -m venv venv && \
-                    . venv/bin/pip install -r requirements.txt && \
-                    BUILD_ID=dontKillMe nohup ./venv/bin/python3 app.py > output.log 2>&1 & sleep 5
+                    . venv/bin/activate && \
+                    pip install -r requirements.txt && \
+                    BUILD_ID=dontKillMe nohup python3 app.py > output.log 2>&1 &
                     "
                     '''
                 }
