@@ -49,12 +49,11 @@ pipeline {
         }
         stage('Deploy') {
             steps {
-                sshagent (['staging_pem_key']) {
+                sshagent (['staging-pem-key']) {
                     withCredentials([
                         string(credentialsId: 'mongo-uri', variable: 'MONGO_URI'),
                         string(credentialsId: 'secret-key', variable: 'SECRET_KEY')
                     ]) {
-
                         sh """
                         ssh -o StrictHostKeyChecking=no $STAGING_USER@$STAGING_SERVER_IP "
                         cd $REMOTE_APP_DIR && ls -la && \
@@ -63,9 +62,14 @@ pipeline {
                         echo \\"SECRET_KEY=${SECRET_KEY}\\" >> .env && \
 
                         pkill -f app.py || true && \
-                        python3 -m venv venv && \
+                        rm -rf venv && \
+
+                        python3 -m venv venv --upgrade-deps && \
                         . venv/bin/activate && \
+                        python -m ensurepip --upgrade && \
+                        pip install --upgrade pip && \
                         pip install -r requirements.txt && \
+
                         BUILD_ID=dontKillMe nohup python3 app.py > output.log 2>&1 &
                         "
                         """
