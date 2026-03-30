@@ -49,7 +49,7 @@ pipeline {
         }
         stage('Deploy') {
             steps {
-                sshagent (['staging-pem-key']) {
+                sshagent (['staging_pem_key']) {
                     echo 'Cleaning remote directory...'
                     sh '''
                     ssh -o StrictHostKeyChecking=no $STAGING_USER@$STAGING_SERVER_IP "
