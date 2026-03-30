@@ -49,34 +49,27 @@ pipeline {
         }
         stage('Deploy') {
             steps {
-                sshagent (['staging_pem_key']) {
-                    echo 'Cleaning remote directory...'
-                    sh '''
-                    ssh -o StrictHostKeyChecking=no $STAGING_USER@$STAGING_SERVER_IP "
-                    rm -rf $REMOTE_APP_DIR/*"
-                    '''
+                sshagent (['staging-pem-key']) {
+                    withCredentials([
+                        string(credentialsId: 'mongo-uri', variable: 'MONGO_URI'),
+                        string(credentialsId: 'secret-key', variable: 'SECRET_KEY')
+                    ]) {
 
-                    echo 'Copying the files to the staging server...'
-                    sh '''
-                    ssh -o StrictHostKeyChecking=no $STAGING_USER@$STAGING_SERVER_IP "mkdir -p $REMOTE_APP_DIR"
-                    scp -o StrictHostKeyChecking=no -r Python_Web_App/* $STAGING_USER@$STAGING_SERVER_IP:$REMOTE_APP_DIR/
-                    '''
+                        sh """
+                        ssh -o StrictHostKeyChecking=no $STAGING_USER@$STAGING_SERVER_IP "
+                        cd $REMOTE_APP_DIR && ls -la && \
 
-                    echo 'Deploying the application...'
-                    sh """
-                    ssh -o StrictHostKeyChecking=no $STAGING_USER@$STAGING_SERVER_IP "
-                    cd $REMOTE_APP_DIR && ls -la && \
+                        echo \\"MONGO_URI=${MONGO_URI}\\" > .env && \
+                        echo \\"SECRET_KEY=${SECRET_KEY}\\" >> .env && \
 
-                    echo \"MONGO_URI=${MONGO_URI}\" > .env && \
-                    echo \"SECRET_KEY=${SECRET_KEY}\" >> .env && \
-
-                    pkill -f app.py || true && \
-                    python3 -m venv venv && \
-                    . venv/bin/activate && \
-                    pip install -r requirements.txt && \
-                    BUILD_ID=dontKillMe nohup python3 app.py > output.log 2>&1 &
-                    "
-                    """
+                        pkill -f app.py || true && \
+                        python3 -m venv venv && \
+                        . venv/bin/activate && \
+                        pip install -r requirements.txt && \
+                        BUILD_ID=dontKillMe nohup python3 app.py > output.log 2>&1 &
+                        "
+                        """
+                    }
                 }
             }
         }
