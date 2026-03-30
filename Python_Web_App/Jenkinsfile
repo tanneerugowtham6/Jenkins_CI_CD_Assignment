@@ -64,20 +64,17 @@ pipeline {
 
                     echo 'Deploying the application...'
                     sh '''
-                    ssh -o StrictHostKeyChecking=no $STAGING_USER@$STAGING_SERVER_IP << EOF
+                    ssh -o StrictHostKeyChecking=no $STAGING_USER@$STAGING_SERVER_IP "
                     cd $REMOTE_APP_DIR && ls -la && \
 
-                    cat <<EOT > .env
-                    MONGO_URI=${MONGO_URI}
-                    SECRET_KEY=${SECRET_KEY}
-                    EOT
+                    echo 'MONGO_URI=${MONGO_URI}' > .env && \
+                    echo 'SECRET_KEY=${SECRET_KEY}' >> .env && \
 
                     pkill -f app.py || true && \
                     python3 -m venv venv && \
                     . venv/bin/activate && \
                     pip install -r requirements.txt && \
                     BUILD_ID=dontKillMe nohup python3 app.py > output.log 2>&1 &
-                    EOF
                     "
                     '''
                 }
