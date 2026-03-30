@@ -1,4 +1,4 @@
-<img width="796" height="80" alt="image" src="https://github.com/user-attachments/assets/55a2b132-47ca-4b02-afe2-bfc7d6e37b88" /># Jenkins CI/CD Pipeline for Python(Flask) based Student Registration System Application
+# Jenkins CI/CD Pipeline for Python(Flask) based Student Registration System Application
 
 ---
 
