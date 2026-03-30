@@ -70,7 +70,7 @@ pipeline {
                         pip install --upgrade pip && \
                         pip install -r requirements.txt && \
 
-                        BUILD_ID=dontKillMe nohup python3 app.py > output.log 2>&1 &
+                        python3 app.py
                         "
                         """
                     }
