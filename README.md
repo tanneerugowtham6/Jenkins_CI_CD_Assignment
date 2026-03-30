@@ -1,4 +1,4 @@
-# Jenkins CI/CD Pipeline for Python(Flask) based Student Registration System Application
+<img width="796" height="80" alt="image" src="https://github.com/user-attachments/assets/55a2b132-47ca-4b02-afe2-bfc7d6e37b88" /># Jenkins CI/CD Pipeline for Python(Flask) based Student Registration System Application
 
 ---
 
@@ -14,8 +14,9 @@ This project is executed in **4 phases**, each containing a set of clear deploym
 
 - **Phase 1:** Environment & Source Control Setup
 - **Phase 2:** Writing the Jenkinsfile
-- **Phase 3:** Jenkins Job Configuration
-- **Phase 4:** Verification
+- **Phase 3:** Configure the service for Flask Application
+- **Phase 4:** Jenkins Job Configuration
+- **Phase 5:** Verification
 
 ---
 
@@ -272,7 +273,55 @@ This project is executed in **4 phases**, each containing a set of clear deploym
 
 ---
 
-## Phase 3: Jenkins Job Configuration
+## Phase 3: Configure the service for Flask Application
+
+### Task-1: Create systemd Service
+
+1. Connect to the Staging EC2 Instance, create `myapp.service` file
+
+    ```sh
+    sudo nano /etc/systemd/system/myapp.service
+    ```
+    
+2. Paste the below configuration to the service file
+
+    ```sh
+    [Unit]
+    Description=Python Web App
+    After=network.target
+    
+    [Service]
+    User=ubuntu
+    WorkingDirectory=/home/ubuntu/App
+    ExecStart=/home/ubuntu/App/venv/bin/python app.py
+    Restart=always
+    EnvironmentFile=/home/ubuntu/App/.env
+    
+    [Install]
+    WantedBy=multi-user.target
+    ```
+    
+3. Execute the below commands to start the service
+
+    ```sh
+    sudo systemctl daemon-reload
+    sudo systemctl enable myapp
+    sudo systemctl start myapp
+    ```
+
+    <img width="796" height="80" alt="image" src="https://github.com/user-attachments/assets/d7215ce4-5b15-4c39-8b4a-7f8c2f9b6ff8" />
+
+4. Verify the service
+
+    ```sh
+    sudo systemctl status myapp
+    ```
+
+    <img width="1172" height="349" alt="image" src="https://github.com/user-attachments/assets/c70655df-7c4b-4258-a6bd-f4a352cffddb" />
+
+---
+
+## Phase 4: Jenkins Job Configuration
 
 ### Task-1: Create a Job in Jenkins
 
@@ -326,6 +375,8 @@ This project is executed in **4 phases**, each containing a set of clear deploym
 
 15. Click on **Create**
 16. Navigate the pipeline job or item which we created earlier and click on **Build Now** button
+
+    <img width="1710" height="901" alt="image" src="https://github.com/user-attachments/assets/c5aad568-8fca-4620-8677-87c72ac7c768" />
     
 
 ### Task 2: Create Webhook in GitHub
