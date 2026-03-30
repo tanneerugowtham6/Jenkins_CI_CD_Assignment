@@ -1,14 +1,20 @@
-# Jenkins CI/CD Pipeline for Python(Flask) based Student Registration System Application
+# End-to-End CI/CD Pipeline using Jenkins for Flask Student Registration Application
 
 ---
 
-Set up a Jenkins pipeline that automates the testing and deployment of a Student Registration System Python web application.
+## Project Overview
+
+This repository demonstrates the implementation of a complete Continuous Integration and Continuous Deployment (CI/CD) pipeline using Jenkins for a Python Flask-based Student Registration System application.
+
+The pipeline automates the entire software delivery lifecycle, including environment setup, dependency installation, application testing, and deployment to a staging server hosted on AWS EC2. The deployed application is managed as a background service using systemd, ensuring high availability, automatic restarts, and reliability.
+
+Additionally, the pipeline is integrated with GitHub webhooks to enable automatic build triggers on code changes pushed to the main branch, enabling a fully automated and efficient deployment workflow.
 
 ---
 
-## Project Execution Overview
+## Project Execution
 
-This project is executed in **4 phases**, each containing a set of clear deployment tasks required to fully host and scale the Travel Memory MERN application on AWS.
+This project is executed in **4 phases**, each containing a set of clear deployment tasks required to fully host the Python Flask-based Student Registration System application on AWS.
 
 ### Phases of Deployment
 
